@@ -15,23 +15,27 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
-=======
+ * Local parent assign process parents task.
  *
- * @package     report_studentgrades
+ * @package     local_parentassign
  * @copyright   2025 Mohammad Nabil <mohammad@smartlearn.education>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace local_parentassign\task;
 
 defined('MOODLE_INTERNAL') || die();
 
-class process_parents extends \core\task\scheduled_task {
+class process_parents extends \core\task\scheduled_task
+{
 
-    public function get_name() {
+    public function get_name()
+    {
         return get_string('pluginname', 'local_parentassign');
     }
 
-    public function execute() {
+    public function execute()
+    {
         global $DB;
 
         mtrace('Starting parent assignment task...');
@@ -49,7 +53,7 @@ class process_parents extends \core\task\scheduled_task {
         $sql = "SELECT userid, data
                   FROM {user_info_data}
                  WHERE fieldid = :fieldid AND data IS NOT NULL AND data <> ''";
-        
+
         $rs = $DB->get_recordset_sql($sql, ['fieldid' => $fieldid]);
 
         foreach ($rs as $record) {

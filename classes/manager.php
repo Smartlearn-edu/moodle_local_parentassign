@@ -15,18 +15,20 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
-=======
+ * Local parent assign manager class.
  *
- * @package     report_studentgrades
+ * @package     local_parentassign
  * @copyright   2025 Mohammad Nabil <mohammad@smartlearn.education>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace local_parentassign;
 
 defined('MOODLE_INTERNAL') || die();
 
 
-class manager {
+class manager
+{
 
     const PARENT_EMAIL_FIELD = 'parent_email';
     const PARENT_NAME_FIELD = 'parent_name';
@@ -38,7 +40,8 @@ class manager {
      * @param int $userid The student user ID.
      * @return void
      */
-    public static function assign_parent($userid) {
+    public static function assign_parent($userid)
+    {
         global $DB, $CFG;
         require_once($CFG->dirroot . '/user/lib.php');
         require_once($CFG->dirroot . '/user/profile/lib.php');
@@ -54,7 +57,7 @@ class manager {
         // Actually, profile_load_data attaches it to the user object.
         // Let's check how to access it reliably.
         // A safer way is to query the data directly if we know the shortname.
-        
+
         $parent_email = self::get_profile_field_value($userid, self::PARENT_EMAIL_FIELD);
         $parent_name = self::get_profile_field_value($userid, self::PARENT_NAME_FIELD);
 
@@ -83,7 +86,8 @@ class manager {
     /**
      * Helper to get profile field value.
      */
-    private static function get_profile_field_value($userid, $shortname) {
+    private static function get_profile_field_value($userid, $shortname)
+    {
         global $DB;
         $sql = "SELECT d.data
                   FROM {user_info_data} d
@@ -95,9 +99,10 @@ class manager {
     /**
      * Creates a new parent user.
      */
-    private static function create_parent_user($email, $name) {
+    private static function create_parent_user($email, $name)
+    {
         global $CFG;
-        
+
         // Split name into first and last.
         $parts = explode(' ', trim($name));
         $firstname = array_shift($parts);
@@ -132,7 +137,8 @@ class manager {
     /**
      * Assigns the parent role in the student's context.
      */
-    private static function assign_role($studentid, $parentid) {
+    private static function assign_role($studentid, $parentid)
+    {
         global $DB;
 
         $role = $DB->get_record('role', ['shortname' => self::PARENT_ROLE_SHORTNAME]);

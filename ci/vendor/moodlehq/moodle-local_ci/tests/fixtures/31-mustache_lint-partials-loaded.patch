@@ -1,0 +1,42 @@
+From e5c0e94dde233f5bcf627980ef1afbe91f975a65 Mon Sep 17 00:00:00 2001
+From: Dan Poltawski <dan@moodle.com>
+Date: Fri, 14 Oct 2016 12:25:22 +0100
+Subject: [PATCH] MDLSITE-4770 - A template to check that partial loading is
+ working.
+
+---
+ .../templates/test_partial_loading.mustache   | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 blocks/lp/templates/test_partial_loading.mustache
+
+diff --git a/blocks/lp/templates/test_partial_loading.mustache b/blocks/lp/templates/test_partial_loading.mustache
+new file mode 100644
+index 00000000000..853d13ea79a
+--- /dev/null
++++ b/blocks/lp/templates/test_partial_loading.mustache
+@@ -0,0 +1,22 @@
++{{!
++    @template block_lp/test_partial_loading
++
++    A template for our lint test to check that partial loading is working.
++
++    Classes required for JS:
++    * None
++
++    Data attibutes required for JS:
++    * None
++
++    Context variables required for this template:
++    * None
++
++    Example context (json): {
++        "message": "Your pants are on fire!",
++        "closebutton": 1,
++        "announce": 1,
++        "extraclasses": "foo bar"
++    }
++}}
++{{> core/notification_info}}
+-- 
+2.40.0
+

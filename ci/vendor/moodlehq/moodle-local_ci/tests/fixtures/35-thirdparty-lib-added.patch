@@ -1,0 +1,27 @@
+From 96ec9462a7d7a05f39af044020b63e371831ab05 Mon Sep 17 00:00:00 2001
+From: Dan Poltawski <dan@moodle.com>
+Date: Tue, 12 Jul 2016 11:23:56 +0100
+Subject: [PATCH] MDLSITE-4678 fixture: adding third party lib
+
+---
+ lib/thirdpartylibs.xml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/lib/thirdpartylibs.xml b/lib/thirdpartylibs.xml
+index c14a3e01d4..ba719b5f84 100644
+--- a/lib/thirdpartylibs.xml
++++ b/lib/thirdpartylibs.xml
+@@ -323,4 +323,10 @@
+     <license>MIT</license>
+     <version>1.1.1</version>
+   </library>
++  <library>
++    <location>integrationtest</location>
++    <name>Moodle Integration test for MDLSITE-4678</name>
++    <license>GPL</license>
++    <version>2.3.0</version>
++  </library>
+ </libraries>
+-- 
+2.39.1
+
