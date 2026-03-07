@@ -24,11 +24,15 @@
 
 namespace local_parentassign;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Observer class for user creation and update events.
+ *
+ * @package    local_parentassign
+ * @copyright  2025 Mohammad Nabil <mohammad@smartlearn.education>
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class observer
 {
-
     /**
      * Triggered when a user is created.
      *

@@ -24,15 +24,24 @@
 
 namespace local_parentassign;
 
-defined('MOODLE_INTERNAL') || die();
-
-
+/**
+ * Manager class for parent assignment logic.
+ *
+ * @package    local_parentassign
+ * @copyright  2025 Mohammad Nabil <mohammad@smartlearn.education>
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class manager
 {
 
+    /** @var string Profile field for parent email. */
     const PARENT_EMAIL_FIELD = 'parent_email';
+
+    /** @var string Profile field for parent name. */
     const PARENT_NAME_FIELD = 'parent_name';
-    const PARENT_ROLE_SHORTNAME = 'parent'; // Assuming 'parent' is the shortname
+
+    /** @var string Shortname of the parent role. */
+    const PARENT_ROLE_SHORTNAME = 'parent';
 
     /**
      * Assigns a parent to the user based on custom profile fields.
@@ -58,28 +67,28 @@ class manager
         // Let's check how to access it reliably.
         // A safer way is to query the data directly if we know the shortname.
 
-        $parent_email = self::get_profile_field_value($userid, self::PARENT_EMAIL_FIELD);
-        $parent_name = self::get_profile_field_value($userid, self::PARENT_NAME_FIELD);
+        $parentemail = self::get_profile_field_value($userid, self::PARENT_EMAIL_FIELD);
+        $parentname = self::get_profile_field_value($userid, self::PARENT_NAME_FIELD);
 
-        if (empty($parent_email)) {
+        if (empty($parentemail)) {
             return; // No parent email specified.
         }
 
         // Clean email.
-        $parent_email = clean_param($parent_email, PARAM_EMAIL);
-        if (!validate_email($parent_email)) {
+        $parentemail = clean_param($parentemail, PARAM_EMAIL);
+        if (!validate_email($parentemail)) {
             return; // Invalid email.
         }
 
         // Check if parent user exists.
-        $parent_user = $DB->get_record('user', ['email' => $parent_email, 'deleted' => 0]);
+        $parentuser = $DB->get_record('user', ['email' => $parentemail, 'deleted' => 0]);
 
-        if (!$parent_user) {
-            $parent_user = self::create_parent_user($parent_email, $parent_name);
+        if (!$parentuser) {
+            $parentuser = self::create_parent_user($parentemail, $parentname);
         }
 
-        if ($parent_user) {
-            self::assign_role($user->id, $parent_user->id);
+        if ($parentuser) {
+            self::assign_role($user->id, $parentuser->id);
         }
     }
 

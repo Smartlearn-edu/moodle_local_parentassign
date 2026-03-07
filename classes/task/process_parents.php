@@ -24,16 +24,29 @@
 
 namespace local_parentassign\task;
 
-defined('MOODLE_INTERNAL') || die();
-
+/**
+ * Scheduled task to process parent assignments.
+ *
+ * @package    local_parentassign
+ * @copyright  2025 Mohammad Nabil <mohammad@smartlearn.education>
+ * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class process_parents extends \core\task\scheduled_task
 {
 
+    /**
+     * Get the name of the task.
+     *
+     * @return string
+     */
     public function get_name()
     {
         return get_string('pluginname', 'local_parentassign');
     }
 
+    /**
+     * Execute the task.
+     */
     public function execute()
     {
         global $DB;
