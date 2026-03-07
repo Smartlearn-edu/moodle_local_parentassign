@@ -33,7 +33,6 @@ namespace local_parentassign;
  */
 class manager
 {
-
     /** @var string Profile field for parent email. */
     const PARENT_EMAIL_FIELD = 'parent_email';
 
@@ -49,8 +48,7 @@ class manager
      * @param int $userid The student user ID.
      * @return void
      */
-    public static function assign_parent($userid)
-    {
+    public static function assign_parent($userid) {
         global $DB, $CFG;
         require_once($CFG->dirroot . '/user/lib.php');
         require_once($CFG->dirroot . '/user/profile/lib.php');
@@ -99,8 +97,7 @@ class manager
      * @param string $shortname The profile field shortname.
      * @return mixed The field value.
      */
-    private static function get_profile_field_value($userid, $shortname)
-    {
+    private static function get_profile_field_value($userid, $shortname) {
         global $DB;
         $sql = "SELECT d.data
                   FROM {user_info_data} d
@@ -116,8 +113,7 @@ class manager
      * @param string $name The parent name.
      * @return \core_user|\stdClass|null The created user object or null on failure.
      */
-    private static function create_parent_user($email, $name)
-    {
+    private static function create_parent_user($email, $name) {
         global $CFG;
 
         // Split name into first and last.
@@ -183,8 +179,7 @@ class manager
      * @param int $parentid The parent user ID.
      * @return void
      */
-    private static function assign_role($studentid, $parentid)
-    {
+    private static function assign_role($studentid, $parentid) {
         global $DB;
 
         $role = $DB->get_record('role', ['shortname' => self::PARENT_ROLE_SHORTNAME]);

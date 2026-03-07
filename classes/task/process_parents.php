@@ -33,22 +33,19 @@ namespace local_parentassign\task;
  */
 class process_parents extends \core\task\scheduled_task
 {
-
     /**
      * Get the name of the task.
      *
      * @return string
      */
-    public function get_name()
-    {
+    public function get_name() {
         return get_string('pluginname', 'local_parentassign');
     }
 
     /**
      * Execute the task.
      */
-    public function execute()
-    {
+    public function execute() {
         global $DB;
 
         mtrace('Starting parent assignment task...');

@@ -38,8 +38,7 @@ class observer
      *
      * @param \core\event\user_created $event
      */
-    public static function user_created(\core\event\user_created $event)
-    {
+    public static function user_created(\core\event\user_created $event) {
         $userid = $event->objectid;
         manager::assign_parent($userid);
     }
@@ -49,8 +48,7 @@ class observer
      *
      * @param \core\event\user_updated $event
      */
-    public static function user_updated(\core\event\user_updated $event)
-    {
+    public static function user_updated(\core\event\user_updated $event) {
         $userid = $event->objectid;
         manager::assign_parent($userid);
     }
